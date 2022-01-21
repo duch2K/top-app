@@ -1,7 +1,7 @@
-import { FC } from "react";
 import { HtagProps } from "./Htag.props";
+// import styles from "./Htag.modules.css";
 
-export const Htag: FC<HtagProps> = ({ tag, children }): JSX.Element => {
+export const Htag = ({ tag, children }: HtagProps): JSX.Element => {
   switch (tag) {
     case 'h1':
       return <h1>{children}</h1>;
@@ -10,6 +10,6 @@ export const Htag: FC<HtagProps> = ({ tag, children }): JSX.Element => {
     case 'h3':
       return <h3>{children}</h3>;
     default:
-      return <>{children}</>;
+      return <h1>{children}</h1>;
   }
 };
