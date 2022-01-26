@@ -1,9 +1,10 @@
-import React, { FC } from 'react';
+import React from 'react';
+import { NextPage } from 'next';
 import cn from 'classnames';
 import { PProps } from './P.props';
 import styles from './P.module.css';
 
-export const P: FC<PProps> = ({ size, children, className, ...props }) => {
+export const P: NextPage<PProps> = ({ size, children, className, ...props }) => {
   return (
     <p
       className={cn(styles.p, className, {

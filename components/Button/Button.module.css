@@ -8,6 +8,7 @@
 	text-align: center;
 
 	border: none;
+	border-radius: 5px;
 }
 
 .primary {
@@ -30,7 +31,8 @@
 	background-color: var(--primary);
 }
 
-.primary svg, .ghost:hover svg {
+.primary svg,
+.ghost:hover svg {
 	fill: var(--white);
 }
 
@@ -41,6 +43,6 @@
 }
 
 .down {
-	transform: rotate(90deg);
 	transition: all 0.2s;
+	transform: rotate(90deg);
 }

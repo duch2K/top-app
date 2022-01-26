@@ -1,7 +1,8 @@
+import { NextPage } from "next";
 import { HtagProps } from "./Htag.props";
 // import styles from "./Htag.modules.css";
 
-export const Htag = ({ tag, children }: HtagProps): JSX.Element => {
+export const Htag: NextPage<HtagProps> = ({ tag, children }): JSX.Element => {
   switch (tag) {
     case 'h1':
       return <h1>{children}</h1>;
