@@ -6,6 +6,14 @@
       "dom.iterable",
       "esnext"
     ],
+    "baseUrl": "./",
+    "paths": {
+      "@components/*": ["components/*"],
+      "@layout/*": ["layout/*"],
+      "@context/*": ["context/*"],
+      "@interfaces/*": ["interfaces/*"],
+      "@helpers/*": ["helpers/*"]
+    },
     "allowJs": false,
     "skipLibCheck": true,
     "strict": true,

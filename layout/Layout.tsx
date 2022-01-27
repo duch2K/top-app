@@ -1,6 +1,5 @@
-import React, { useEffect, useState, KeyboardEvent, FC } from 'react';
+import React, { FC } from 'react';
 import { NextPage } from 'next';
-import cn from 'classnames';
 import { LayoutProps } from './Layout.props';
 import styles from './Layout.module.css';
 import { Header } from './Header/Header';
