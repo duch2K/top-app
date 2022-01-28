@@ -4,9 +4,9 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import cn from 'classnames';
 import styles from './Menu.module.css';
-import { Context } from '@context/app.context';
-import { FirstLevelMenuItem, PageItem } from '@interfaces/menu.interface';
-import { firstLevelMenu } from '@helpers/helpers';
+import { Context } from '@/context/app.context';
+import { FirstLevelMenuItem, PageItem } from '@/interfaces/menu.interface';
+import { firstLevelMenu } from '@/helpers/helpers';
 
 export const Menu: NextPage = () => {
   const { menu, setMenu, firstCategory } = useContext(Context);

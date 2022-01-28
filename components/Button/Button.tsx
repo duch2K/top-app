@@ -4,7 +4,7 @@ import { ButtonProps } from './Button.props';
 import ArrowIcon from './arrow.svg';
 import styles from './Button.module.css';
 
-export const Button: NextPage<ButtonProps> = ({ variant, arrow = 'none', children, className, ...props }): JSX.Element => {
+export const Button: NextPage<ButtonProps> = ({ variant, arrow = 'none', children, className, ...props }) => {
   return (
     <button
       className={cn(styles.button, className, {

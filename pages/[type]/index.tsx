@@ -1,11 +1,11 @@
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext, NextPage } from "next";
 import { ParsedUrlQuery } from "querystring";
 import axios from "axios";
-import { MenuItem } from "@interfaces/menu.interface";
-import { TopLevelCategory, TopPageModel } from "@interfaces/page.interface";
-import { ProductModel } from "@interfaces/product.interface";
-import { withLayout } from "@layout/Layout";
-import { firstLevelMenu } from "@helpers/helpers";
+import { MenuItem } from "@/interfaces/menu.interface";
+import { TopLevelCategory, TopPageModel } from "@/interfaces/page.interface";
+import { ProductModel } from "@/interfaces/product.interface";
+import { withLayout } from "@/layout/Layout";
+import { firstLevelMenu } from "@/helpers/helpers";
 
 const Type: NextPage<TypeProps> = ({ menu, firstCategory }) => {
 
