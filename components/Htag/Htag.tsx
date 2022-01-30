@@ -1,5 +1,5 @@
-import { NextPage } from "next";
-import { HtagProps } from "./Htag.props";
+import { NextPage } from ';
+import { HtagProps } from ';
 import styles from './Htag.module.css';
 
 export const Htag: NextPage<HtagProps> = ({ tag, children }) => {

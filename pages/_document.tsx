@@ -1,4 +1,4 @@
-import Document, { DocumentContext, DocumentInitialProps, Head, Html, Main, NextScript } from "next/document";
+import Document, { DocumentContext, DocumentInitialProps, Head, Html, Main, NextScript } from ';
 
 
 export default class MyDocument extends Document {
