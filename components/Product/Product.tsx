@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { MouseEventHandler, useState } from 'react';
 import { NextPage } from 'next';
 import cn from 'classnames';
 import { Button, Card, Divider, Rating, Tag } from '@/components';
@@ -9,6 +9,11 @@ import Image from 'next/image';
 
 export const Product: NextPage<ProductProps> = ({ product, className, ...props }) => {
   const [isReviewOpen, setIsReviewOpen] = useState<boolean>(false);
+
+  const handleReviewOpenClick: MouseEventHandler<HTMLButtonElement> = (e) => {
+    setIsReviewOpen(state => !state);
+  }
+
   return (
     <>
       <Card className={styles.product}>
@@ -76,7 +81,7 @@ export const Product: NextPage<ProductProps> = ({ product, className, ...props }
             variant="ghost"
             arrow={isReviewOpen ? 'down' : 'right'}
             className={styles.reviewButton}
-            onClick={setIsReviewOpen(state => !state)}
+            onClick={handleReviewOpenClick}
           >Читать отзывы</Button>
         </div>
       </Card>

@@ -1,12 +1,12 @@
-import { GetStaticPaths, GetStaticProps, GetStaticPropsContext, NextPage } from ';
-import { ParsedUrlQuery } from ';
-import axios from ';
-import { MenuItem } from ';
-import { TopLevelCategory, TopPageModel } from ';
-import { ProductModel } from ';
-import { withLayout } from ';
-import { firstLevelMenu } from ';
-import { TopPageComponent } from ';
+import { GetStaticPaths, GetStaticProps, GetStaticPropsContext, NextPage } from 'next';
+import axios from 'axios';
+import { MenuItem } from '@/interfaces/menu.interface';
+import { TopLevelCategory, TopPageModel } from '@/interfaces/page.interface';
+import { ProductModel } from '@/interfaces/product.interface';
+import { withLayout } from '@/layout/Layout';
+import { TopPageComponent } from '@/page-components';
+import { firstLevelMenu } from '@/helpers/helpers'
+import { ParsedUrlQuery } from 'querystring';
 
 const TopPage: NextPage<TopPageProps> = ({ page, firstCategory, products }) => {
 

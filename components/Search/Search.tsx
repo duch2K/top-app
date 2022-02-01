@@ -1,18 +1,17 @@
-import React, { ChangeEvent, MouseEvent, useState } from 'react';
+import React, { ChangeEvent, KeyboardEventHandler, useState, MouseEventHandler } from 'react';
 import { NextPage } from 'next';
-import cn from 'classnames';
+import { useRouter } from 'next/router';
 import { SearchProps } from './Search.props';
 import styles from './Search.module.css';
 import { Button, Input } from '@/components';
 import SearchGlassIcon from './search-glass.svg';
-import { useRouter } from 'next/router';
 
 export const Search: NextPage<SearchProps> = ({ className, ...props }) => {
   const [search, setSearch] = useState<string>('');
 
   const router = useRouter();
 
-  const goToSearch = (e: MouseEvent<HTMLButtonElement>) => {
+  const handleSearchClick: MouseEventHandler<HTMLButtonElement> = (e) => {
     router.push({
       pathname: '/search',
       query: {
@@ -21,7 +20,7 @@ export const Search: NextPage<SearchProps> = ({ className, ...props }) => {
     });
   };
 
-  const handleKeyDown = (e: KeyboardEvent) => {
+  const handleKeyDown: KeyboardEventHandler<HTMLButtonElement> = (e) => {
     if (e.key == 'Enter') {
       router.push({
         pathname: '/search',
@@ -43,7 +42,7 @@ export const Search: NextPage<SearchProps> = ({ className, ...props }) => {
       <Button
         variant="primary"
         className={styles.button}
-        onClick={goToSearch}
+        onClick={handleSearchClick}
         onKeyDown={handleKeyDown}
       >
         <SearchGlassIcon />
