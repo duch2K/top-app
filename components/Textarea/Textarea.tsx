@@ -1,12 +1,16 @@
-import React from 'react';
-import { NextPage } from 'next';
+import React, { ForwardedRef, forwardRef } from 'react';
 import cn from 'classnames';
 import { TextareaProps } from './Textarea.props';
 import styles from './Textarea.module.css';
 
-export const Textarea: NextPage<TextareaProps> = ({ className, ...props }) => {
+export const Textarea = forwardRef(({ className, error, ...props }: TextareaProps, ref: ForwardedRef<HTMLTextAreaElement>) => {
   return (
-    <textarea className={cn(styles.textarea, className)} {...props} />
+    <div className={cn(styles.textareaWrapper, className)}>
+			<textarea className={cn(styles.textarea, {
+				[styles.error]: error
+			})} ref={ref} {...props} />
+			{error && <span role="alert" className={styles.errorMessage}>{error.message}</span>}
+		</div>
   );
-};
+});
 

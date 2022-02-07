@@ -1,11 +1,10 @@
-import React, { useEffect, useState, KeyboardEvent } from 'react';
-import { NextPage } from 'next';
+import React, { useEffect, useState, KeyboardEvent, forwardRef, ForwardedRef } from 'react';
 import cn from 'classnames';
 import { RatingProps } from './Rating.props';
 import StarIcon from './star.svg';
 import styles from './Rating.module.css';
 
-export const Rating: NextPage<RatingProps> = ({ isEditable = false, rating, setRating, ...props }) => {
+export const Rating = forwardRef(({ isEditable = false, rating, setRating, error, ...props }: RatingProps, ref: ForwardedRef<HTMLDivElement>) => {
   const [ratingArr, setRatingArr] = useState<JSX.Element[]>(new Array(5).fill(<></>));
 
   useEffect(() => {
@@ -36,7 +35,7 @@ export const Rating: NextPage<RatingProps> = ({ isEditable = false, rating, setR
 
     setRatingArr(updatedArr);
   };
-  
+
   const changeDisplay = (i: number) => {
     if (!isEditable) {
       return;
@@ -60,9 +59,12 @@ export const Rating: NextPage<RatingProps> = ({ isEditable = false, rating, setR
 
 
   return (
-    <div {...props}>
+    <div {...props} ref={ref} className={cn(styles.ratingWrapper, {
+      [styles.error]: error
+    })}>
       {ratingArr.map((r, i) => (<span key={i}>{r}</span>))}
+      {error && <span role="alert" className={styles.errorMessage}>{error.message}</span>}
     </div>
   );
-};
+});
 

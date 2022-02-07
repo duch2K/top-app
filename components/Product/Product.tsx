@@ -1,7 +1,7 @@
 import React, { MouseEventHandler, useState } from 'react';
 import { NextPage } from 'next';
 import cn from 'classnames';
-import { Button, Card, Divider, Rating, Tag } from '@/components';
+import { Button, Card, Divider, Rating, Tag, Review, ReviewForm } from '@/components';
 import { ProductProps } from './Product.props';
 import styles from './Product.module.css';
 import { declOfNum, priceRu } from '@/helpers/helpers';
@@ -24,7 +24,6 @@ export const Product: NextPage<ProductProps> = ({ product, className, ...props }
             width={70}
             height={70}
           />
-          {/* <img src={process.env.NEXT_PUBLIC_DOMAIN + product.image} alt={product.title} /> */}
         </div>
         <div className={styles.title}>{product.title}</div>
         <div className={styles.price}>
@@ -86,11 +85,17 @@ export const Product: NextPage<ProductProps> = ({ product, className, ...props }
         </div>
       </Card>
 
-      <Card color="blue" className={cn(styles.review, {
+      <Card color="blue" className={cn(styles.reviews, {
         [styles.opened]: true,
         [styles.close]: true
       })}>
-
+        {product.reviews.map(r => (
+          <div key={r._id}>
+            <Review review={r} />
+            <Divider />
+          </div>
+        ))}
+        <ReviewForm productId={product._id} isOpen={isReviewOpen} />
       </Card>
     </>
   );

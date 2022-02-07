@@ -1,12 +1,12 @@
 /**
  * @type {import('next').NextConfig}
  **/
-const nextConfig = {
+module.exports = {
+  images: {
+    domains: ['localhost:3000', 'courses-top.ru']
+  },
   reactStrictMode: true,
   swcMinify: false,
-  images: {
-    domains: ['https://courses-top.ru']
-  },
   webpack(config, options) {
     config.module.rules.push({
       loader: '@svgr/webpack',
@@ -32,5 +32,3 @@ const nextConfig = {
     return config;
   }
 };
-
-module.exports = nextConfig;

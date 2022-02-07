@@ -6,6 +6,7 @@ import { ProductModel } from '@/interfaces/product.interface';
 import { withLayout } from '@/layout/Layout';
 import { firstLevelMenu } from '@/helpers/helpers'
 import { ParsedUrlQuery } from 'querystring';
+import { API } from '@/helpers/api';
 
 const Search: NextPage<SearchProps> = ({ menu, page, products }) => {
 
@@ -17,13 +18,6 @@ const Search: NextPage<SearchProps> = ({ menu, page, products }) => {
 };
 
 export default withLayout(Search);
-
-export const getStaticPaths: GetStaticPaths = async () => {
-  return {
-    paths: firstLevelMenu.map(m => '/' + m.route),
-    fallback: true
-  };
-}
 
 export const getStaticProps: GetStaticProps<SearchProps> = async ({ params }: GetStaticPropsContext<ParsedUrlQuery>) => {
   if (!params) {
@@ -40,7 +34,7 @@ export const getStaticProps: GetStaticProps<SearchProps> = async ({ params }: Ge
   }
 
   try {
-    const { data: menu } = await axios.post<MenuItem[]>(process.env.NEXT_PUBLIC_DOMAIN + '/api/top-page/find', {
+    const { data: menu } = await axios.post<MenuItem[]>(API.topPage.find, {
       firstCategory: firstCategoryItem.id
     });
 
