@@ -6,7 +6,7 @@ import { MenuItem } from '@/interfaces/menu.interface';
 import { withLayout } from '@/layout/Layout';
 import { API } from '@/helpers/api';
 
-function Home({ menu, firstCategory }: HomeProps): JSX.Element {
+function Home({ menu }: HomeProps): JSX.Element {
   const [rating, setRating] = useState<number>(4);
 
   return (
@@ -21,7 +21,11 @@ function Home({ menu, firstCategory }: HomeProps): JSX.Element {
       <Tag size="s" color="primary">fsdfM</Tag>
       <Rating isEditable rating={rating} setRating={setRating} />
       <ul>
-        {menu.map(m => (<li key={m._id.secondCategory}>{m._id.secondCategory}</li>))}
+        {menu.map(m => (
+          <li
+            key={m._id.secondCategory}
+          >{m._id.secondCategory}</li>
+        ))}
       </ul>
     </>
   );

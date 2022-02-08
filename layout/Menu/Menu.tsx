@@ -3,6 +3,7 @@ import { NextPage } from 'next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import cn from 'classnames';
+import { motion } from 'framer-motion';
 import styles from './Menu.module.css';
 import { Context } from '@/context/app.context';
 import { FirstLevelMenuItem, PageItem } from '@/interfaces/menu.interface';
@@ -11,6 +12,30 @@ import { firstLevelMenu } from '@/helpers/helpers';
 export const Menu: NextPage = () => {
   const { menu, setMenu, firstCategory } = useContext(Context);
   const router = useRouter();
+
+  const variants = {
+    visible: {
+      marginBottom: 20,
+      transition: {
+        when: 'beforeChildren',
+        staggerChildren: 0.1
+      }
+    },
+    hidden: {
+      marginBottom: 0
+    }
+  };
+
+  const variantsChildren = {
+    visible: {
+      opacity: 1,
+      height: 29
+    },
+    hidden: {
+      opacity: 0,
+      height: 0
+    }
+  };
 
   const openSecondLevel = (secondCategory: string) => {
     setMenu && setMenu(menu.map(m => {
@@ -57,11 +82,15 @@ export const Menu: NextPage = () => {
               <div className={styles.secondLevel} onClick={() => openSecondLevel(m._id.secondCategory)}>
                 {m._id.secondCategory}
               </div>
-              <div className={cn(styles.secondLevelBlock, {
-                [styles.secondLevelBlockOpened]: m.isOpened
-              })}>
+              <motion.div
+                className={cn(styles.secondLevelBlock)}
+                variants={variants}
+                initial={'hidden'}
+                animate={m.isOpened ? 'vidible' : 'hidden'}
+                layout
+              >
                 {buildThirdLevel(m.pages, menuItem.route)}
-              </div>
+              </motion.div>
             </div>
           );
         })}
@@ -72,13 +101,15 @@ export const Menu: NextPage = () => {
   const buildThirdLevel = (pages: PageItem[], route: string) => {
     return (
       pages.map(p => (
-        <Link href={`/${route}/${p.alias}`} key={p.category}>
-          <a className={cn(styles.thirdLevel, {
-            [styles.thirdLevelActive]: `/${route}/${p.alias}` == router.asPath
-          })}>
-            {p.category}
-          </a>
-        </Link>
+        <motion.div variants={variantsChildren}>
+          <Link href={`/${route}/${p.alias}`} key={p.category}>
+            <a className={cn(styles.thirdLevel, {
+              [styles.thirdLevelActive]: `/${route}/${p.alias}` == router.asPath
+            })}>
+              {p.category}
+            </a>
+          </Link>
+        </motion.div>
       ))
     );
   };

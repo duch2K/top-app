@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, useState } from 'react';
+import React, { MouseEventHandler, useRef, useState } from 'react';
 import { NextPage } from 'next';
 import cn from 'classnames';
 import { Button, Card, Divider, Rating, Tag, Review, ReviewForm } from '@/components';
@@ -9,13 +9,22 @@ import Image from 'next/image';
 
 export const Product: NextPage<ProductProps> = ({ product, className, ...props }) => {
   const [isReviewOpen, setIsReviewOpen] = useState<boolean>(false);
+  const reviewRef = useRef<HTMLDivElement>(null);
 
   const handleReviewOpenClick: MouseEventHandler<HTMLButtonElement> = (e) => {
     setIsReviewOpen(state => !state);
   }
 
+  const scrollToReview = () => {
+    setIsReviewOpen(true);
+    reviewRef.current?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    })
+  }
+
   return (
-    <>
+    <div className={className} {...props}>
       <Card className={styles.product}>
         <div className={styles.logo}>
           <Image
@@ -46,7 +55,9 @@ export const Product: NextPage<ProductProps> = ({ product, className, ...props }
         <div className={styles.priceTitle}>цена</div>
         <div className={styles.creditTitle}>кредит</div>
         <div className={styles.rateTitle}>
-          {product.reviewCount + declOfNum(product.reviewCount, ['отзыв', 'отзыва', 'отзывов'])}
+          <a href="#ref" onClick={scrollToReview}>
+            {product.reviewCount + declOfNum(product.reviewCount, ['отзыв', 'отзыва', 'отзывов'])}
+          </a>
         </div>
         <Divider className={styles.hr} />
         <div className={styles.description}>{product.description}</div>
@@ -88,7 +99,7 @@ export const Product: NextPage<ProductProps> = ({ product, className, ...props }
       <Card color="blue" className={cn(styles.reviews, {
         [styles.opened]: true,
         [styles.close]: true
-      })}>
+      })} ref={reviewRef}>
         {product.reviews.map(r => (
           <div key={r._id}>
             <Review review={r} />
@@ -97,7 +108,7 @@ export const Product: NextPage<ProductProps> = ({ product, className, ...props }
         ))}
         <ReviewForm productId={product._id} isOpen={isReviewOpen} />
       </Card>
-    </>
+    </div>
   );
 };
 

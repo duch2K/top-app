@@ -1,4 +1,4 @@
-import { GetStaticPaths, GetStaticProps, GetStaticPropsContext, NextPage } from 'next';
+import { GetStaticProps, GetStaticPropsContext, NextPage } from 'next';
 import axios from 'axios';
 import { MenuItem } from '@/interfaces/menu.interface';
 import { TopLevelCategory, TopPageModel } from '@/interfaces/page.interface';
