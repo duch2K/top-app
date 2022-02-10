@@ -18,23 +18,18 @@ export const Menu: NextPage = () => {
       marginBottom: 20,
       transition: {
         when: 'beforeChildren',
-        staggerChildren: 0.1
+        staggerChildren: 0.05
       }
     },
-    hidden: {
-      marginBottom: 0
-    }
+    hidden: { marginBottom: 0 }
   };
 
   const variantsChildren = {
     visible: {
       opacity: 1,
-      height: 29
+      height: 'unset'
     },
-    hidden: {
-      opacity: 0,
-      height: 0
-    }
+    hidden: { opacity: 0, height: 0 }
   };
 
   const openSecondLevel = (secondCategory: string) => {
@@ -57,9 +52,7 @@ export const Menu: NextPage = () => {
                   [styles.firstLevelActive]: m.id == firstCategory
                 })}>
                   {m.icon}
-                  <span>
-                    {m.name}
-                  </span>
+                  <span>{m.name}</span>
                 </div>
               </a>
             </Link>
@@ -83,11 +76,11 @@ export const Menu: NextPage = () => {
                 {m._id.secondCategory}
               </div>
               <motion.div
-                className={cn(styles.secondLevelBlock)}
-                variants={variants}
-                initial={'hidden'}
-                animate={m.isOpened ? 'vidible' : 'hidden'}
                 layout
+                variants={variants}
+                initial={m.isOpened ? 'visible' : 'hidden'}
+                animate={m.isOpened ? 'visible' : 'hidden'}
+                className={cn(styles.secondLevelBlock)}
               >
                 {buildThirdLevel(m.pages, menuItem.route)}
               </motion.div>
@@ -101,8 +94,8 @@ export const Menu: NextPage = () => {
   const buildThirdLevel = (pages: PageItem[], route: string) => {
     return (
       pages.map(p => (
-        <motion.div variants={variantsChildren}>
-          <Link href={`/${route}/${p.alias}`} key={p.category}>
+        <motion.div key={p._id} variants={variantsChildren}>
+          <Link href={`/${route}/${p.alias}`}>
             <a className={cn(styles.thirdLevel, {
               [styles.thirdLevelActive]: `/${route}/${p.alias}` == router.asPath
             })}>

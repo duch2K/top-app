@@ -1,5 +1,6 @@
 export * from './Htag/Htag';
 export * from './Button/Button';
+export * from './ButtonIcon/ButtonIcon';
 export * from './P/P';
 export * from './Tag/Tag';
 export * from './Rating/Rating';
@@ -14,3 +15,4 @@ export * from './Product/Product';
 export * from './Divider/Divider';
 export * from './Review/Review';
 export * from './ReviewForm/ReviewForm';
+export * from './Up/Up';

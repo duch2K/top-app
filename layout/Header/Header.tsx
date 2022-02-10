@@ -1,13 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NextPage } from 'next';
 import cn from 'classnames';
+import { motion } from 'framer-motion';
+import Logo from '@/layout/logo.svg';
 import { HeaderProps } from './Header.props';
 import styles from './Header.module.css';
+import { ButtonIcon } from '@/components';
+import { Sidebar } from '@/layout/Sidebar/Sidebar';
 
-export const Header: NextPage<HeaderProps> = ({ ...props }) => {
+export const Header: NextPage<HeaderProps> = ({ className, ...props }) => {
+  const [isOpened, setIsOpened] = useState<boolean>(false);
+
+  const handleClick = () => {
+    setIsOpened(state => !state);
+  }
+
+  const variants = {
+    opened: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        stiffness: 20
+      }
+    }
+  }
+
   return (
-    <header {...props}>
-      header
+    <header className={cn(styles.header, className)} {...props}>
+      <Logo />
+      <ButtonIcon variant="white" icon="menu" />
+      <motion.div className={styles.mobileMenu}>
+        <Sidebar />
+        <ButtonIcon className={styles.menuClose} variant="white" icon="close" onClick={handleClick} />
+      </motion.div>
     </header>
   );
 };

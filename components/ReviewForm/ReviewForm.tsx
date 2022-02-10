@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { NextPage } from 'next';
 import { useForm, Controller } from 'react-hook-form';
+import axios from 'axios';
 import cn from 'classnames';
 import { Button, Input, Rating, Textarea } from '@/components';
 import CloseIcon from './close.svg';
@@ -8,12 +9,11 @@ import { ReviewFormProps } from './ReviewForm.props';
 import styles from './ReviewForm.module.css';
 import { ReviewFormModel, ReviewSentResponse } from './ReviewForm.interface';
 import { API } from '@/helpers/api';
-import axios from 'axios';
 
-export const ReviewForm: NextPage<ReviewFormProps> = ({ productId, isOpen, className, ...props }) => {
+export const ReviewForm: NextPage<ReviewFormProps> = ({ productId, isOpened, className, ...props }) => {
   const { register, control, handleSubmit, formState: { errors }, reset } = useForm();
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
-  const [error, setError] = useState<string>('');
+  const [error, setError] = useState('');
 
   const onSubmit = async (formData: ReviewFormModel) => {
     try {
@@ -28,7 +28,9 @@ export const ReviewForm: NextPage<ReviewFormProps> = ({ productId, isOpen, class
         setError('Error!');
       }
     } catch (err) {
-      setError(err.message);
+      if (err instanceof Error) {
+        setError(err.message);
+      }
     }
   };
 

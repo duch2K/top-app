@@ -6,6 +6,7 @@ import { Header } from './Header/Header';
 import { Sidebar } from './Sidebar/Sidebar';
 import { Footer } from './Footer/Footer';
 import { AppContext, ContextProvider } from '../context/app.context';
+import { Up } from '@/components';
 
 export const Layout: NextPage<LayoutProps> = ({ children }) => {
 
@@ -19,6 +20,7 @@ export const Layout: NextPage<LayoutProps> = ({ children }) => {
       </main>
 
       <Footer className={styles.footer} />
+      <Up />
     </div>
   );
 };
