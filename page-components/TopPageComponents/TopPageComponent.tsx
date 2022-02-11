@@ -23,7 +23,7 @@ export const TopPageComponent: NextPage<TopPageComponentProps> = ({ page, produc
       <div className={styles.title}>
         <Htag tag="h1">{page.title}</Htag>
         {products && <div>
-          <Tag color="grey" size="m">{products.length}</Tag>
+          <Tag color="grey" size="m" aria-label={products.length + 'элементов'}>{products.length}</Tag>
         </div>}
         <Sort sort={sort} setSort={setSort} />
       </div>

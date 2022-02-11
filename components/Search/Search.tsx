@@ -44,6 +44,7 @@ export const Search: NextPage<SearchProps> = ({ className, ...props }) => {
         className={styles.button}
         onClick={handleSearchClick}
         onKeyDown={handleKeyDown}
+        aria-label="Искать по сайту"
       >
         <SearchGlassIcon />
       </Button>

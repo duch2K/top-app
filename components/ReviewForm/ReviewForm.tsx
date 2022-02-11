@@ -41,12 +41,14 @@ export const ReviewForm: NextPage<ReviewFormProps> = ({ productId, isOpened, cla
           {...register('name', { required: { value: true, message: 'Заполните имя' } })}
           error={errors.name}
           placeholder="Имя"
+          tabIndex={isOpened ? 0 : -1}
         />
         <Input
           {...register('title', { required: { value: true, message: 'Заполните заголовок' } })}
           className={styles.title}
           error={errors.title}
           placeholder="Заголовок отзыва"
+          tabIndex={isOpened ? 0 : -1}
         />
         <div className={styles.rating}>
           <span>Оценка:</span>
@@ -60,6 +62,7 @@ export const ReviewForm: NextPage<ReviewFormProps> = ({ productId, isOpened, cla
                 error={errors.rating}
                 ref={field.ref}
                 setRating={field.onChange}
+                tabIndex={isOpened ? 0 : -1}
                 isEditable
               />
             )}
@@ -70,9 +73,10 @@ export const ReviewForm: NextPage<ReviewFormProps> = ({ productId, isOpened, cla
           className={styles.description}
           error={errors.description}
           placeholder="Текст отзыва"
+          tabIndex={isOpened ? 0 : -1}
         />
         <div className={styles.submit}>
-          <Button variant="primary">Отправить</Button>
+          <Button variant="primary" tabIndex={isOpened ? 0 : -1}>Отправить</Button>
           <span>* Перед публикацией отзыв пройдет предварительную проверку</span>
         </div>
       </div>

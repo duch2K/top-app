@@ -9,7 +9,7 @@ export default class MyDocument extends Document {
 
   render(): JSX.Element {
     return (
-      <Html>
+      <Html lang="ru">
         <Head />
         <body>
           <Main />
